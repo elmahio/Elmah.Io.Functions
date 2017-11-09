@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{80AD4FBB-FF69-4BAD-B1DF-050C1C434D1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{445B28CB-4E1B-44CE-8AE7-F44DEB8A364E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions", "src\Elmah.Io.Functions\Elmah.Io.Functions.csproj", "{5F252A87-6964-4663-BFB5-8F9224D63132}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.FunctionApp", "samples\Elmah.Io.Functions.FunctionApp\Elmah.Io.Functions.FunctionApp.csproj", "{A25CE6D2-9E40-4F08-A00F-01B739F33D5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Functions.WebJob", "samples\Elmah.Io.Functions.WebJob\Elmah.Io.Functions.WebJob.csproj", "{20A75125-7E0A-48CD-A4B7-DC8296D44E4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F199C0C1-7B2D-4348-A48A-71FA0D43883E}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F252A87-6964-4663-BFB5-8F9224D63132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F252A87-6964-4663-BFB5-8F9224D63132}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F252A87-6964-4663-BFB5-8F9224D63132}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F252A87-6964-4663-BFB5-8F9224D63132}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A25CE6D2-9E40-4F08-A00F-01B739F33D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25CE6D2-9E40-4F08-A00F-01B739F33D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25CE6D2-9E40-4F08-A00F-01B739F33D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25CE6D2-9E40-4F08-A00F-01B739F33D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20A75125-7E0A-48CD-A4B7-DC8296D44E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A75125-7E0A-48CD-A4B7-DC8296D44E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A75125-7E0A-48CD-A4B7-DC8296D44E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20A75125-7E0A-48CD-A4B7-DC8296D44E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F252A87-6964-4663-BFB5-8F9224D63132} = {80AD4FBB-FF69-4BAD-B1DF-050C1C434D1C}
+		{A25CE6D2-9E40-4F08-A00F-01B739F33D5C} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
+		{20A75125-7E0A-48CD-A4B7-DC8296D44E4F} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {549BEB48-E57E-4A17-A64A-153F0F02263C}
+	EndGlobalSection
+EndGlobal
