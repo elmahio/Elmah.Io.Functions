@@ -5,8 +5,6 @@ branches:
 image: Visual Studio 2017
 before_build:
 - ps: >-
-    dotnet restore
-
     nuget restore
 build:
   verbosity: minimal
