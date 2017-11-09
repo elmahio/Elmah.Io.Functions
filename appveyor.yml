@@ -4,7 +4,11 @@ branches:
   - master
 image: Visual Studio 2017
 before_build:
-- ps: dotnet restore
+- ps: >-
+    dotnet restore
+
+
+    dotnet --version
 build:
   verbosity: minimal
 after_build:
