@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="elmah.io.client" Version="3.0.46" />
-    <PackageReference Include="Microsoft.Azure.WebJobs" Version="2.1.0-beta4" />
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="[2.1.0-beta4]" />
   </ItemGroup>
 
 </Project>
