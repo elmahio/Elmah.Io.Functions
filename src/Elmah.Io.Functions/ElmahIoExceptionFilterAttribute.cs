@@ -34,8 +34,20 @@ namespace Elmah.Io.Functions
                 Type = exception.GetType().Name,
                 Data = exception.ToDataList(),
                 Severity = Severity.Error.ToString(),
-                Source = exceptionContext.FunctionName,
+                Application = exceptionContext.FunctionName,
+                Source = Source(exception),
             });
+        }
+
+        private string Source(Exception exception)
+        {
+            var ex = exception;
+            while (ex.InnerException != null)
+            {
+                ex = ex.InnerException;
+            }
+
+            return ex?.Source;
         }
     }
 }
