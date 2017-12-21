@@ -2,6 +2,7 @@
 using Elmah.Io.Client.Models;
 using Microsoft.Azure.WebJobs.Host;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,11 +33,31 @@ namespace Elmah.Io.Functions
                 DateTime = DateTime.UtcNow,
                 Detail = exception.ToString(),
                 Type = exception.GetType().Name,
-                Data = exception.ToDataList(),
+                Data = Data(exceptionContext),
                 Severity = Severity.Error.ToString(),
                 Application = exceptionContext.FunctionName,
                 Source = Source(exception),
             });
+        }
+
+        /// <summary>
+        /// Combine properties from exception Data dictionary and Azure Functions filter context properties
+        /// </summary>
+        private IList<Item> Data(FunctionExceptionContext exceptionContext)
+        {
+            var data = new List<Item>();
+            var exceptionData = exceptionContext.Exception.ToDataList();
+            if (exceptionData != null)
+            {
+                data.AddRange(exceptionData);
+            }
+
+            foreach (var property in exceptionContext.Properties)
+            {
+                data.Add(new Item { Key = property.Key, Value = property.Value?.ToString() });
+            }
+
+            return data;
         }
 
         private string Source(Exception exception)
