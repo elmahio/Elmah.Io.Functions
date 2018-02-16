@@ -1,5 +1,6 @@
 ﻿using Elmah.Io.Client;
 using Elmah.Io.Client.Models;
+using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace Elmah.Io.Functions
 
         public ElmahIoExceptionFilterAttribute(string apiKey, string logId)
         {
+            if (string.IsNullOrWhiteSpace(apiKey)) throw new ArgumentNullException(nameof(apiKey));
+            if (string.IsNullOrWhiteSpace(logId)) throw new ArgumentNullException(nameof(logId));
+
             ApiKey = apiKey;
             LogId = logId;
         }
@@ -26,8 +30,13 @@ namespace Elmah.Io.Functions
 
             var exception = exceptionContext.Exception;
 
-            var api = ElmahioAPI.Create(ApiKey);
-            await api.Messages.CreateAndNotifyAsync(new Guid(LogId), new CreateMessage
+            var resolver = new DefaultNameResolver();
+            var apiKey = resolver.ResolveWholeString(ApiKey);
+
+            if (!Guid.TryParse(resolver.ResolveWholeString(LogId), out Guid logId)) throw new ArgumentException("Log ID not a guid");
+
+            var api = ElmahioAPI.Create(apiKey);
+            await api.Messages.CreateAndNotifyAsync(logId, new CreateMessage
             {
                 Title = exception.Message,
                 DateTime = DateTime.UtcNow,
