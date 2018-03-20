@@ -1,7 +1,7 @@
 ﻿{
   "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "REPLACE",
-    "AzureWebJobsDashboard": "REPLACE"
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AzureWebJobsDashboard": "UseDevelopmentStorage=true"
   }
 }

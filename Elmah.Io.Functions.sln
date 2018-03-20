@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Functions.WebJob", "samples\Elmah.Io.Functions.WebJob\Elmah.Io.Functions.WebJob.csproj", "{20A75125-7E0A-48CD-A4B7-DC8296D44E4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Functions.FunctionCoreApp", "samples\Elmah.Io.Functions.FunctionCoreApp\Elmah.Io.Functions.FunctionCoreApp.csproj", "{CA2ACB1E-F898-4D3A-9E8E-53435F05A3E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{20A75125-7E0A-48CD-A4B7-DC8296D44E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20A75125-7E0A-48CD-A4B7-DC8296D44E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20A75125-7E0A-48CD-A4B7-DC8296D44E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA2ACB1E-F898-4D3A-9E8E-53435F05A3E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA2ACB1E-F898-4D3A-9E8E-53435F05A3E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA2ACB1E-F898-4D3A-9E8E-53435F05A3E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA2ACB1E-F898-4D3A-9E8E-53435F05A3E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +53,7 @@ Global
 		{5F252A87-6964-4663-BFB5-8F9224D63132} = {80AD4FBB-FF69-4BAD-B1DF-050C1C434D1C}
 		{A25CE6D2-9E40-4F08-A00F-01B739F33D5C} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 		{20A75125-7E0A-48CD-A4B7-DC8296D44E4F} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
+		{CA2ACB1E-F898-4D3A-9E8E-53435F05A3E8} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {549BEB48-E57E-4A17-A64A-153F0F02263C}
