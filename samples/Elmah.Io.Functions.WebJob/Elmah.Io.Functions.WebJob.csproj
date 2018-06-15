@@ -34,14 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Azure.WebJobs, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.WebJobs.Core.2.1.0-beta4\lib\net45\Microsoft.Azure.WebJobs.dll</HintPath>
+    <Reference Include="Microsoft.Azure.WebJobs, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Azure.WebJobs.Core.2.2.0\lib\net45\Microsoft.Azure.WebJobs.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Azure.WebJobs.Extensions, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.WebJobs.Extensions.2.1.0-beta4\lib\net45\Microsoft.Azure.WebJobs.Extensions.dll</HintPath>
+    <Reference Include="Microsoft.Azure.WebJobs.Extensions, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Azure.WebJobs.Extensions.2.2.0\lib\net45\Microsoft.Azure.WebJobs.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Azure.WebJobs.Host, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Azure.WebJobs.2.1.0-beta4\lib\net45\Microsoft.Azure.WebJobs.Host.dll</HintPath>
+    <Reference Include="Microsoft.Azure.WebJobs.Host, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Azure.WebJobs.2.2.0\lib\net45\Microsoft.Azure.WebJobs.Host.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Extensions.Logging.Abstractions.1.1.1\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>

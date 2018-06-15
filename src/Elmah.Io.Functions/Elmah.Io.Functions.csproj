@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>elmah.io logger for Azure Functions and WebJobs</Description>
@@ -12,15 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="elmah.io.client" Version="[3.2.50,4)" />
+    <PackageReference Include="elmah.io.client" Version="[3.2.52,4)" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-    <PackageReference Include="Microsoft.Azure.WebJobs" Version="2.1.0-beta4" />
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.0-beta3" />
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.0-beta5" />
   </ItemGroup>
 
 </Project>
