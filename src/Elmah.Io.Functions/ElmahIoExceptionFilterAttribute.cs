@@ -35,17 +35,19 @@ namespace Elmah.Io.Functions
 
             if (!Guid.TryParse(resolver.ResolveWholeString(LogId), out Guid logId)) throw new ArgumentException("Log ID not a guid");
 
+            var baseException = exception.GetBaseException();
+
             var api = ElmahioAPI.Create(apiKey);
             await api.Messages.CreateAndNotifyAsync(logId, new CreateMessage
             {
-                Title = exception.Message,
+                Title = baseException.Message,
                 DateTime = DateTime.UtcNow,
                 Detail = exception.ToString(),
-                Type = exception.GetType().Name,
+                Type = baseException.GetType().Name,
                 Data = Data(exceptionContext),
                 Severity = Severity.Error.ToString(),
                 Application = exceptionContext.FunctionName,
-                Source = Source(exception),
+                Source = baseException.Source,
             });
         }
 
@@ -55,10 +57,16 @@ namespace Elmah.Io.Functions
         private IList<Item> Data(FunctionExceptionContext exceptionContext)
         {
             var data = new List<Item>();
-            var exceptionData = exceptionContext.Exception.ToDataList();
-            if (exceptionData != null)
+            Exception e = exceptionContext.Exception;
+            while (e != null)
             {
-                data.AddRange(exceptionData);
+                var exceptionData = e.ToDataList();
+                if (exceptionData != null)
+                {
+                    data.AddRange(exceptionData);
+                }
+
+                e = e.InnerException;
             }
 
             foreach (var property in exceptionContext.Properties)
@@ -66,18 +74,9 @@ namespace Elmah.Io.Functions
                 data.Add(new Item { Key = property.Key, Value = property.Value?.ToString() });
             }
 
+            data.Add(new Item { Key = nameof(exceptionContext.FunctionInstanceId), Value = exceptionContext.FunctionInstanceId.ToString() });
+
             return data;
-        }
-
-        private string Source(Exception exception)
-        {
-            var ex = exception;
-            while (ex.InnerException != null)
-            {
-                ex = ex.InnerException;
-            }
-
-            return ex?.Source;
         }
     }
 }
