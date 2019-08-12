@@ -17,7 +17,7 @@ namespace Elmah.Io.Functions.TimerTrigger
                 .AddEnvironmentVariables()
                 .Build();
 
-            builder.Services.Configure<ElmahIoOptions>(o =>
+            builder.Services.Configure<ElmahIoFunctionOptions>(o =>
             {
                 o.ApiKey = config["apiKey"];
                 o.LogId = new Guid(config["logId"]);

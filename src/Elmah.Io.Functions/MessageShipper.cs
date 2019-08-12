@@ -14,14 +14,14 @@ namespace Elmah.Io.Functions
     {
         internal static string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
 
-        public static async Task Ship(FunctionExceptionContext exceptionContext, HttpContext context, ElmahIoOptions options)
+        public static async Task Ship(FunctionExceptionContext exceptionContext, HttpContext context, ElmahIoFunctionOptions options)
         {
             var exception = exceptionContext.Exception;
             var baseException = exception?.GetBaseException();
             var createMessage = new CreateMessage
             {
                 DateTime = DateTime.UtcNow,
-                Detail = Detail(exception, options),
+                Detail = Detail(exception),
                 Type = baseException?.GetType().FullName,
                 Title = baseException.Message,
                 Data = Data(exceptionContext),
@@ -43,7 +43,7 @@ namespace Elmah.Io.Functions
                 return;
             }
 
-            var elmahioApi = new ElmahioAPI(new ApiKeyCredentials(options.ApiKey), HttpClientHandlerFactory.GetHttpClientHandler(options));
+            var elmahioApi = new ElmahioAPI(new ApiKeyCredentials(options.ApiKey), HttpClientHandlerFactory.GetHttpClientHandler(new ElmahIoOptions()));
             elmahioApi.HttpClient.Timeout = new TimeSpan(0, 0, 5);
             elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Clear();
             elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)));
@@ -96,7 +96,7 @@ namespace Elmah.Io.Functions
             return data;
         }
 
-        private static string Detail(Exception exception, ElmahIoOptions options)
+        private static string Detail(Exception exception)
         {
             return exception?.ToString();
         }

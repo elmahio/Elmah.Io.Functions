@@ -3,7 +3,7 @@ using System;
 
 namespace Elmah.Io.Functions
 {
-    public class ElmahIoOptions
+    public class ElmahIoFunctionOptions
     {
         public string ApiKey { get; set; }
 

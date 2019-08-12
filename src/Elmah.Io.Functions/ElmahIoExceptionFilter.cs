@@ -9,9 +9,9 @@ namespace Elmah.Io.Functions
 {
     public class ElmahIoExceptionFilter : IFunctionExceptionFilter, IFunctionInvocationFilter
     {
-        private readonly ElmahIoOptions options;
+        private readonly ElmahIoFunctionOptions options;
 
-        public ElmahIoExceptionFilter(IOptions<ElmahIoOptions> options)
+        public ElmahIoExceptionFilter(IOptions<ElmahIoFunctionOptions> options)
         {
             this.options = options.Value;
         }
