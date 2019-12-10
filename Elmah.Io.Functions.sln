@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTriggerWithHeartbeat", "samples\Elmah.Io.Functions.TimerTriggerWithHeartbeat\Elmah.Io.Functions.TimerTriggerWithHeartbeat.csproj", "{CF62ABD1-9E7F-453F-B788-0E845D618710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Functions.TimerTrigger30", "samples\Elmah.Io.Functions.TimerTrigger30\Elmah.Io.Functions.TimerTrigger30.csproj", "{8E7584A5-21B6-43E7-9596-3E1951E082CD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{CF62ABD1-9E7F-453F-B788-0E845D618710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF62ABD1-9E7F-453F-B788-0E845D618710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF62ABD1-9E7F-453F-B788-0E845D618710}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E7584A5-21B6-43E7-9596-3E1951E082CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E7584A5-21B6-43E7-9596-3E1951E082CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E7584A5-21B6-43E7-9596-3E1951E082CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E7584A5-21B6-43E7-9596-3E1951E082CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,7 +54,6 @@ Global
 		{6356DF10-D920-4361-AE5F-7D5F6836F4AA} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 		{E9BAEDA7-CEC9-4D10-AB2F-C215450F8237} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 		{CF62ABD1-9E7F-453F-B788-0E845D618710} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
-		{8E7584A5-21B6-43E7-9596-3E1951E082CD} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {549BEB48-E57E-4A17-A64A-153F0F02263C}
