@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="elmah.io.client" Version="[3.7.74-pre,4)" />
+    <PackageReference Include="elmah.io.client" Version="[3.7.77-pre,4)" />
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
   </ItemGroup>
