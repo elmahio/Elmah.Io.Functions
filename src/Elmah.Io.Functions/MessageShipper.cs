@@ -43,9 +43,8 @@ namespace Elmah.Io.Functions
                 return;
             }
 
-            var elmahioApi = new ElmahioAPI(new ApiKeyCredentials(options.ApiKey), HttpClientHandlerFactory.GetHttpClientHandler(new ElmahIoOptions()));
+            var elmahioApi = (ElmahioAPI)ElmahioAPI.Create(options.ApiKey);
             elmahioApi.HttpClient.Timeout = new TimeSpan(0, 0, 5);
-            elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Clear();
             elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)));
 
             elmahioApi.Messages.OnMessage += (sender, args) =>
