@@ -38,7 +38,7 @@ namespace Elmah.Io.Functions
         {
             if (api == null)
             {
-                api = new ElmahioAPI(new ApiKeyCredentials(options.ApiKey), HttpClientHandlerFactory.GetHttpClientHandler(new ElmahIoOptions()));
+                api = (ElmahioAPI)ElmahioAPI.Create(options.ApiKey);
             }
 
             await api.Heartbeats.CreateAsync(options.HeartbeatId, options.LogId.ToString(), new CreateHeartbeat
