@@ -11,6 +11,7 @@
     <RepositoryUrl>https://github.com/elmahio/Elmah.Io.Functions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
