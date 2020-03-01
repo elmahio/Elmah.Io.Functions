@@ -14,7 +14,9 @@ namespace Elmah.Io.Functions
     {
         internal static string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
 
+#pragma warning disable CS0618 // Type or member is obsolete
         public static async Task Ship(FunctionExceptionContext exceptionContext, HttpContext context, ElmahIoFunctionOptions options)
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             var exception = exceptionContext.Exception;
             var baseException = exception?.GetBaseException();
@@ -70,7 +72,9 @@ namespace Elmah.Io.Functions
         /// <summary>
         /// Combine properties from exception Data dictionary and Azure Functions filter context properties
         /// </summary>
+#pragma warning disable CS0618 // Type or member is obsolete
         private static IList<Item> Data(FunctionExceptionContext exceptionContext)
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             var data = new List<Item>();
             Exception e = exceptionContext.Exception;

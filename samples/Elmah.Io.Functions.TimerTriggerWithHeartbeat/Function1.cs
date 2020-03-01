@@ -9,7 +9,7 @@ namespace Elmah.Io.Functions.TimerTriggerWithHeartbeat
         // Use the following attribute to test missing heartbeat (after one unhealthy or healthy heartbeat)
         //[Disable]
         [FunctionName("Function1")]
-        public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log)
+        public static void Run([TimerTrigger("0 */5 * * * *", RunOnStartup = true)]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             

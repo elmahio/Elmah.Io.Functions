@@ -27,7 +27,9 @@ namespace Elmah.Io.Functions.HttpTrigger
                 };
             });
 
+#pragma warning disable CS0618 // Type or member is obsolete
             builder.Services.AddSingleton<IFunctionFilter, ElmahIoExceptionFilter>();
+#pragma warning restore CS0618 // Type or member is obsolete
         }
     }
 }

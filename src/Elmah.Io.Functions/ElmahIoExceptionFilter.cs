@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace Elmah.Io.Functions
 {
+    /// <summary>
+    /// This filter logs all uncaught exceptions happening during a function. Register using FunctionStartup.
+    /// </summary>
+#pragma warning disable CS0618 // Type or member is obsolete
     public class ElmahIoExceptionFilter : IFunctionExceptionFilter, IFunctionInvocationFilter
+#pragma warning restore CS0618 // Type or member is obsolete
     {
         private readonly ElmahIoFunctionOptions options;
 
@@ -16,7 +21,9 @@ namespace Elmah.Io.Functions
             this.options = options.Value;
         }
 
+#pragma warning disable CS0618 // Type or member is obsolete
         public async Task OnExceptionAsync(FunctionExceptionContext exceptionContext, CancellationToken cancellationToken)
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             HttpContext httpContext = null;
 
@@ -28,25 +35,30 @@ namespace Elmah.Io.Functions
                         httpContext = request.HttpContext;
                         exceptionContext.Properties.Remove(argument);
                         break;
-                    default:
-                        break;
                 }
             }
 
             await MessageShipper.Ship(exceptionContext, httpContext, options);
         }
 
-        public async Task OnExecutedAsync(FunctionExecutedContext executedContext, CancellationToken cancellationToken)
+#pragma warning disable CS0618 // Type or member is obsolete
+        public Task OnExecutedAsync(FunctionExecutedContext executedContext, CancellationToken cancellationToken)
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             // Save context arguments like the HTTP context for HTTP triggered functions
             foreach (var arg in executedContext.Arguments)
             {
                 executedContext.Properties.Add(arg.Key, arg.Value);
             }
+
+            return Task.CompletedTask;
         }
 
-        public async Task OnExecutingAsync(FunctionExecutingContext executingContext, CancellationToken cancellationToken)
+#pragma warning disable CS0618 // Type or member is obsolete
+        public Task OnExecutingAsync(FunctionExecutingContext executingContext, CancellationToken cancellationToken)
+#pragma warning restore CS0618 // Type or member is obsolete
         {
+            return Task.CompletedTask;
         }
     }
 }

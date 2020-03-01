@@ -24,7 +24,9 @@ namespace Elmah.Io.Functions.TimerTriggerWithHeartbeat
                 o.HeartbeatId = config["heartbeatId"];
             });
 
+#pragma warning disable CS0618 // Type or member is obsolete
             builder.Services.AddSingleton<IFunctionFilter, ElmahIoHeartbeatFilter>();
+#pragma warning restore CS0618 // Type or member is obsolete
         }
     }
 }

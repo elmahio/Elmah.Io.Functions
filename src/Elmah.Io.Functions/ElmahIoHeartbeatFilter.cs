@@ -1,5 +1,4 @@
 ﻿using Elmah.Io.Client;
-using Elmah.Io.Client.Models;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Options;
 using System;
@@ -8,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace Elmah.Io.Functions
 {
+    /// <summary>
+    /// This filter logs a healthy or unhealthy heartbeat to elmah.io, depending if the functions runs with or without exceptions. Register using FunctionStartup.
+    /// </summary>
+#pragma warning disable CS0618 // Type or member is obsolete
     public class ElmahIoHeartbeatFilter : IFunctionInvocationFilter
+#pragma warning restore CS0618 // Type or member is obsolete
     {
         private readonly ElmahIoFunctionOptions options;
         private ElmahioAPI api;
@@ -21,35 +25,31 @@ namespace Elmah.Io.Functions
             if (string.IsNullOrWhiteSpace(this.options.HeartbeatId)) throw new ArgumentNullException(nameof(this.options.HeartbeatId));
         }
 
+#pragma warning disable CS0618 // Type or member is obsolete
         public async Task OnExecutedAsync(FunctionExecutedContext executedContext, CancellationToken cancellationToken)
-        {
-            if (executedContext.FunctionResult.Succeeded)
-            {
-                await CreateAsync("Healthy");
-            }
-            else
-            {
-                await CreateAsync("Unhealthy", executedContext.FunctionResult.Exception?.ToString());
-
-            }
-        }
-
-        private async Task CreateAsync(string result, string reason = null)
+#pragma warning restore CS0618 // Type or member is obsolete
         {
             if (api == null)
             {
                 api = (ElmahioAPI)ElmahioAPI.Create(options.ApiKey);
             }
 
-            await api.Heartbeats.CreateAsync(options.HeartbeatId, options.LogId.ToString(), new CreateHeartbeat
+            if (executedContext.FunctionResult.Succeeded)
             {
-                Result = result,
-                Reason = reason,
-            });
+                await api.Heartbeats.HealthyAsync(options.LogId, options.HeartbeatId);
+            }
+            else
+            {
+                await api.Heartbeats.UnhealthyAsync(options.LogId, options.HeartbeatId, executedContext.FunctionResult.Exception?.ToString());
 
+            }
         }
-        public async Task OnExecutingAsync(FunctionExecutingContext executingContext, CancellationToken cancellationToken)
+
+#pragma warning disable CS0618 // Type or member is obsolete
+        public Task OnExecutingAsync(FunctionExecutingContext executingContext, CancellationToken cancellationToken)
+#pragma warning restore CS0618 // Type or member is obsolete
         {
+            return Task.CompletedTask;
         }
     }
 }

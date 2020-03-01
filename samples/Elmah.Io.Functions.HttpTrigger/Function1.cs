@@ -25,9 +25,9 @@ namespace Elmah.Io.Functions.HttpTrigger
 
             throw new Exception("An error happened");
 
-            return name != null
-                ? (ActionResult)new OkObjectResult($"Hello, {name}")
-                : new BadRequestObjectResult("Please pass a name on the query string or in the request body"); ;
+            //return name != null
+            //    ? (ActionResult)new OkObjectResult($"Hello, {name}")
+            //    : new BadRequestObjectResult("Please pass a name on the query string or in the request body"); ;
         }
     }
 }
