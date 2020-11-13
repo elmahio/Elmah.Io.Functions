@@ -77,16 +77,10 @@ namespace Elmah.Io.Functions
 #pragma warning restore CS0618 // Type or member is obsolete
         {
             var data = new List<Item>();
-            Exception e = exceptionContext.Exception;
-            while (e != null)
+            var exceptionData = exceptionContext.Exception?.ToDataList();
+            if (exceptionData?.Count > 0)
             {
-                var exceptionData = e.ToDataList();
-                if (exceptionData != null)
-                {
-                    data.AddRange(exceptionData);
-                }
-
-                e = e.InnerException;
+                data.AddRange(exceptionData);
             }
 
             foreach (var property in exceptionContext.Properties)
