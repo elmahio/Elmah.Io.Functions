@@ -89,6 +89,7 @@ namespace Elmah.Io.Functions
             }
 
             data.Add(new Item { Key = nameof(exceptionContext.FunctionInstanceId), Value = exceptionContext.FunctionInstanceId.ToString() });
+            data.Add(new Item { Key = nameof(exceptionContext.FunctionName), Value = exceptionContext.FunctionName });
 
             return data;
         }
