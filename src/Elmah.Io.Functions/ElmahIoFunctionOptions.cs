@@ -29,9 +29,9 @@ namespace Elmah.Io.Functions
         public string Application { get; set; }
 
         /// <summary>
-        /// Configure the timeout to use when communicating with the elmah.io API. Default is 30 seconds.
+        /// Configure the timeout to use when communicating with the elmah.io API. Default is 5 seconds.
         /// </summary>
-        public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(30);
+        public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(5);
 
         /// <summary>
         /// Register an action to be called before logging an error. Use the OnMessage action to

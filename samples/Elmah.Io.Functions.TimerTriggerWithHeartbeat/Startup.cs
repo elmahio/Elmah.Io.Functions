@@ -22,6 +22,7 @@ namespace Elmah.Io.Functions.TimerTriggerWithHeartbeat
                 o.ApiKey = config["apiKey"];
                 o.LogId = new Guid(config["logId"]);
                 o.HeartbeatId = config["heartbeatId"];
+                o.Timeout = TimeSpan.FromSeconds(30);
             });
 
 #pragma warning disable CS0618 // Type or member is obsolete
