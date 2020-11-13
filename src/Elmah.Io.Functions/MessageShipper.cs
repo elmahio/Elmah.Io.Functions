@@ -46,7 +46,7 @@ namespace Elmah.Io.Functions
             }
 
             var elmahioApi = (ElmahioAPI)ElmahioAPI.Create(options.ApiKey);
-            elmahioApi.HttpClient.Timeout = new TimeSpan(0, 0, 5);
+            elmahioApi.HttpClient.Timeout = options.Timeout;
             elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)));
 
             elmahioApi.Messages.OnMessage += (sender, args) =>

@@ -2,6 +2,7 @@
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Options;
 using System;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace Elmah.Io.Functions
     {
         private readonly ElmahIoFunctionOptions options;
         private ElmahioAPI api;
+        internal static string _assemblyVersion = typeof(ElmahIoHeartbeatFilter).Assembly.GetName().Version.ToString();
 
         public ElmahIoHeartbeatFilter(IOptions<ElmahIoFunctionOptions> options)
         {
@@ -32,6 +34,8 @@ namespace Elmah.Io.Functions
             if (api == null)
             {
                 api = (ElmahioAPI)ElmahioAPI.Create(options.ApiKey);
+                api.HttpClient.Timeout = options.Timeout;
+                api.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)));
             }
 
             if (executedContext.FunctionResult.Succeeded)

@@ -3,6 +3,9 @@ using System;
 
 namespace Elmah.Io.Functions
 {
+    /// <summary>
+    /// A range of properties to use when configuring Elmah.Io.Functions.
+    /// </summary>
     public class ElmahIoFunctionOptions
     {
         /// <summary>
@@ -26,6 +29,11 @@ namespace Elmah.Io.Functions
         public string Application { get; set; }
 
         /// <summary>
+        /// Configure the timeout to use when communicating with the elmah.io API. Default is 30 seconds.
+        /// </summary>
+        public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(30);
+
+        /// <summary>
         /// Register an action to be called before logging an error. Use the OnMessage action to
         /// decorate error messages with additional information.
         /// </summary>
@@ -42,5 +50,6 @@ namespace Elmah.Io.Functions
         /// Register an action to filter log messages. Use this to add client-side ignore
         /// of some error messages. If the filter action returns true, the error is ignored.
         /// </summary>
-        public Func<CreateMessage, bool> OnFilter { get; set; }    }
+        public Func<CreateMessage, bool> OnFilter { get; set; }
+    }
 }
