@@ -83,7 +83,7 @@ namespace Elmah.Io.Functions
                 data.AddRange(exceptionData);
             }
 
-            foreach (var property in exceptionContext.Properties)
+            foreach (var property in exceptionContext.Properties.Where(p => !string.IsNullOrWhiteSpace(p.Key) && p.Key != Constants.StopwatchKeyName))
             {
                 data.Add(new Item { Key = property.Key, Value = property.Value?.ToString() });
             }

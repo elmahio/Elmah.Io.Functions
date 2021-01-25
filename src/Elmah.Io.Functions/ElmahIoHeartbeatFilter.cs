@@ -2,6 +2,7 @@
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Options;
 using System;
+using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,6 +32,17 @@ namespace Elmah.Io.Functions
         public async Task OnExecutedAsync(FunctionExecutedContext executedContext, CancellationToken cancellationToken)
 #pragma warning restore CS0618 // Type or member is obsolete
         {
+            long? took = null;
+            if (executedContext.Properties.ContainsKey(Constants.StopwatchKeyName))
+            {
+                var stopwatch = executedContext.Properties[Constants.StopwatchKeyName] as Stopwatch;
+                if (stopwatch != null)
+                {
+                    stopwatch.Stop();
+                    took = stopwatch.ElapsedMilliseconds;
+                }
+            }
+
             if (api == null)
             {
                 api = (ElmahioAPI)ElmahioAPI.Create(options.ApiKey);
@@ -40,11 +52,11 @@ namespace Elmah.Io.Functions
 
             if (executedContext.FunctionResult.Succeeded)
             {
-                await api.Heartbeats.HealthyAsync(options.LogId, options.HeartbeatId);
+                await api.Heartbeats.HealthyAsync(options.LogId, options.HeartbeatId, took: took);
             }
             else
             {
-                await api.Heartbeats.UnhealthyAsync(options.LogId, options.HeartbeatId, executedContext.FunctionResult.Exception?.ToString());
+                await api.Heartbeats.UnhealthyAsync(options.LogId, options.HeartbeatId, executedContext.FunctionResult.Exception?.ToString(), took: took);
 
             }
         }
@@ -53,6 +65,9 @@ namespace Elmah.Io.Functions
         public Task OnExecutingAsync(FunctionExecutingContext executingContext, CancellationToken cancellationToken)
 #pragma warning restore CS0618 // Type or member is obsolete
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            executingContext.Properties.Add(Constants.StopwatchKeyName, stopwatch);
             return Task.CompletedTask;
         }
     }
