@@ -12,6 +12,7 @@ namespace Elmah.Io.Functions
     internal class MessageShipper
     {
         internal static string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
+        internal static string _functionsAssemblyVersion = typeof(FunctionExceptionContext).Assembly.GetName().Version.ToString();
 
 #pragma warning disable CS0618 // Type or member is obsolete
         public static async Task Ship(FunctionExceptionContext exceptionContext, HttpContext context, ElmahIoFunctionOptions options)
@@ -47,6 +48,7 @@ namespace Elmah.Io.Functions
             var elmahioApi = ElmahioAPI.Create(options.ApiKey);
             elmahioApi.HttpClient.Timeout = options.Timeout;
             elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)));
+            elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Microsoft.Azure.WebJobs", _functionsAssemblyVersion)));
 
             elmahioApi.Messages.OnMessage += (sender, args) =>
             {
