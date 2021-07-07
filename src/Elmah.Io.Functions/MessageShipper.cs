@@ -12,9 +12,9 @@ namespace Elmah.Io.Functions
     internal class MessageShipper
     {
         internal static string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
+#pragma warning disable CS0618 // Type or member is obsolete
         internal static string _functionsAssemblyVersion = typeof(FunctionExceptionContext).Assembly.GetName().Version.ToString();
 
-#pragma warning disable CS0618 // Type or member is obsolete
         public static async Task Ship(FunctionExceptionContext exceptionContext, HttpContext context, ElmahIoFunctionOptions options)
 #pragma warning restore CS0618 // Type or member is obsolete
         {
