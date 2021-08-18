@@ -16,11 +16,17 @@ namespace Elmah.Io.Functions
     {
         private readonly ElmahIoFunctionOptions options;
 
+        /// <summary>
+        /// Create a new instance of the ElmahIoExceptionFilter class. The constructor is intended for DI to use when setting up the filter.
+        /// </summary>
         public ElmahIoExceptionFilter(IOptions<ElmahIoFunctionOptions> options)
         {
             this.options = options.Value;
         }
 
+        /// <summary>
+        /// This method is called by Azure Functions when a function throws an uncaught exception. It is not intended to be called manually.
+        /// </summary>
 #pragma warning disable CS0618 // Type or member is obsolete
         public async Task OnExceptionAsync(FunctionExceptionContext exceptionContext, CancellationToken cancellationToken)
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -41,6 +47,9 @@ namespace Elmah.Io.Functions
             await MessageShipper.Ship(exceptionContext, httpContext, options);
         }
 
+        /// <summary>
+        /// This method is called by Azure Functions when a function has been executed. It is not intended to be called manually.
+        /// </summary>
 #pragma warning disable CS0618 // Type or member is obsolete
         public Task OnExecutedAsync(FunctionExecutedContext executedContext, CancellationToken cancellationToken)
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -54,6 +63,9 @@ namespace Elmah.Io.Functions
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// This method is called by Azure Functions before a function is executed. It is not intended to be called manually.
+        /// </summary>
 #pragma warning disable CS0618 // Type or member is obsolete
         public Task OnExecutingAsync(FunctionExecutingContext executingContext, CancellationToken cancellationToken)
 #pragma warning restore CS0618 // Type or member is obsolete

@@ -20,6 +20,9 @@ namespace Elmah.Io.Functions
         private ElmahioAPI api;
         internal static string _assemblyVersion = typeof(ElmahIoHeartbeatFilter).Assembly.GetName().Version.ToString();
 
+        /// <summary>
+        /// Create a new instance of the ElmahIoHeartbeatFilter class. The constructor is intended for DI to use when setting up the filter.
+        /// </summary>
         public ElmahIoHeartbeatFilter(IOptions<ElmahIoFunctionOptions> options)
         {
             this.options = options.Value;
@@ -28,6 +31,9 @@ namespace Elmah.Io.Functions
             if (string.IsNullOrWhiteSpace(this.options.HeartbeatId)) throw new ArgumentNullException(nameof(this.options.HeartbeatId));
         }
 
+        /// <summary>
+        /// This method is called by Azure Functions when a function has been executed. It is not intended to be called manually.
+        /// </summary>
 #pragma warning disable CS0618 // Type or member is obsolete
         public async Task OnExecutedAsync(FunctionExecutedContext executedContext, CancellationToken cancellationToken)
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -61,6 +67,9 @@ namespace Elmah.Io.Functions
             }
         }
 
+        /// <summary>
+        /// This method is called by Azure Functions before a function is executed. It is not intended to be called manually.
+        /// </summary>
 #pragma warning disable CS0618 // Type or member is obsolete
         public Task OnExecutingAsync(FunctionExecutingContext executingContext, CancellationToken cancellationToken)
 #pragma warning restore CS0618 // Type or member is obsolete
