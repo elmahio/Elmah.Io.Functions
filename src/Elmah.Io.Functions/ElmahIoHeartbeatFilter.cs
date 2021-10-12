@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Diagnostics;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,6 +20,9 @@ namespace Elmah.Io.Functions
         private readonly ElmahIoFunctionOptions options;
         private ElmahioAPI api;
         internal static string _assemblyVersion = typeof(ElmahIoHeartbeatFilter).Assembly.GetName().Version.ToString();
+#pragma warning disable CS0618 // Type or member is obsolete
+        internal static string _functionsAssemblyVersion = typeof(IFunctionInvocationFilter).Assembly.GetName().Version.ToString();
+#pragma warning restore CS0618 // Type or member is obsolete
 
         /// <summary>
         /// Create a new instance of the ElmahIoHeartbeatFilter class. The constructor is intended for DI to use when setting up the filter.
@@ -51,9 +55,11 @@ namespace Elmah.Io.Functions
 
             if (api == null)
             {
-                api = (ElmahioAPI)ElmahioAPI.Create(options.ApiKey);
-                api.HttpClient.Timeout = options.Timeout;
-                api.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)));
+                api = (ElmahioAPI)ElmahioAPI.Create(options.ApiKey, new ElmahIoOptions
+                {
+                    Timeout = options.Timeout,
+                    UserAgent = UserAgent(),
+                });
             }
 
             if (executedContext.FunctionResult.Succeeded)
@@ -78,6 +84,15 @@ namespace Elmah.Io.Functions
             stopwatch.Start();
             executingContext.Properties.Add(Constants.StopwatchKeyName, stopwatch);
             return Task.CompletedTask;
+        }
+
+        private string UserAgent()
+        {
+            return new StringBuilder()
+                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)).ToString())
+                .Append(" ")
+                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Microsoft.Azure.WebJobs", _functionsAssemblyVersion)).ToString())
+                .ToString();
         }
     }
 }

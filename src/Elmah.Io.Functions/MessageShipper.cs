@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Elmah.Io.Functions
@@ -14,6 +15,8 @@ namespace Elmah.Io.Functions
         internal static string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
 #pragma warning disable CS0618 // Type or member is obsolete
         internal static string _functionsAssemblyVersion = typeof(FunctionExceptionContext).Assembly.GetName().Version.ToString();
+
+        internal static IElmahioAPI elmahIoClient;
 
         public static async Task Ship(FunctionExceptionContext exceptionContext, HttpContext context, ElmahIoFunctionOptions options)
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -45,23 +48,27 @@ namespace Elmah.Io.Functions
                 return;
             }
 
-            var elmahioApi = ElmahioAPI.Create(options.ApiKey);
-            elmahioApi.HttpClient.Timeout = options.Timeout;
-            elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)));
-            elmahioApi.HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("Microsoft.Azure.WebJobs", _functionsAssemblyVersion)));
+            if (elmahIoClient == null)
+            {
+                elmahIoClient = ElmahioAPI.Create(options.ApiKey, new ElmahIoOptions
+                {
+                    Timeout = options.Timeout,
+                    UserAgent = UserAgent(),
+                });
 
-            elmahioApi.Messages.OnMessage += (sender, args) =>
-            {
-                options.OnMessage?.Invoke(args.Message);
-            };
-            elmahioApi.Messages.OnMessageFail += (sender, args) =>
-            {
-                options.OnError?.Invoke(args.Message, args.Error);
-            };
+                elmahIoClient.Messages.OnMessage += (sender, args) =>
+                {
+                    options.OnMessage?.Invoke(args.Message);
+                };
+                elmahIoClient.Messages.OnMessageFail += (sender, args) =>
+                {
+                    options.OnError?.Invoke(args.Message, args.Error);
+                };
+            }
 
             try
             {
-                await elmahioApi.Messages.CreateAndNotifyAsync(options.LogId, createMessage);
+                await elmahIoClient.Messages.CreateAndNotifyAsync(options.LogId, createMessage);
             }
             catch (Exception e)
             {
@@ -172,6 +179,15 @@ namespace Elmah.Io.Functions
         private static string Source(Exception baseException)
         {
             return baseException?.Source;
+        }
+
+        private static string UserAgent()
+        {
+            return new StringBuilder()
+                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)).ToString())
+                .Append(" ")
+                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Microsoft.Azure.WebJobs", _functionsAssemblyVersion)).ToString())
+                .ToString();
         }
     }
 }
