@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29025.244
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{80AD4FBB-FF69-4BAD-B1DF-050C1C434D1C}"
 EndProject
@@ -21,6 +21,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTrigger", "samples\Elmah.Io.Functions.TimerTrigger\Elmah.Io.Functions.TimerTrigger.csproj", "{E9BAEDA7-CEC9-4D10-AB2F-C215450F8237}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTriggerWithHeartbeat", "samples\Elmah.Io.Functions.TimerTriggerWithHeartbeat\Elmah.Io.Functions.TimerTriggerWithHeartbeat.csproj", "{CF62ABD1-9E7F-453F-B788-0E845D618710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Functions.TimerTrigger60", "samples\Elmah.Io.Functions.TimerTrigger60\Elmah.Io.Functions.TimerTrigger60.csproj", "{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{CF62ABD1-9E7F-453F-B788-0E845D618710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF62ABD1-9E7F-453F-B788-0E845D618710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF62ABD1-9E7F-453F-B788-0E845D618710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{6356DF10-D920-4361-AE5F-7D5F6836F4AA} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 		{E9BAEDA7-CEC9-4D10-AB2F-C215450F8237} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 		{CF62ABD1-9E7F-453F-B788-0E845D618710} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
+		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {549BEB48-E57E-4A17-A64A-153F0F02263C}
