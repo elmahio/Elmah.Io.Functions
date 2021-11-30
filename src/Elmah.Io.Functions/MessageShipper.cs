@@ -32,7 +32,7 @@ namespace Elmah.Io.Functions
                 Data = Data(exceptionContext),
                 Cookies = Cookies(context),
                 Form = Form(context),
-                Hostname = context?.Request?.Host.Host,
+                Hostname = Hostname(context),
                 ServerVariables = ServerVariables(context),
                 StatusCode = StatusCode(exception, context),
                 Url = context?.Request?.Path.Value,
@@ -100,6 +100,17 @@ namespace Elmah.Io.Functions
             data.Add(new Item { Key = nameof(exceptionContext.FunctionName), Value = exceptionContext.FunctionName });
 
             return data;
+        }
+
+        private static string Hostname(HttpContext context)
+        {
+            var machineName = Environment.MachineName;
+            if (!string.IsNullOrWhiteSpace(machineName)) return machineName;
+
+            machineName = Environment.GetEnvironmentVariable("COMPUTERNAME");
+            if (!string.IsNullOrWhiteSpace(machineName)) return machineName;
+
+            return context?.Request?.Host.Host;
         }
 
         private static string Detail(Exception exception)
