@@ -24,7 +24,7 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Pack
-      run: dotnet pack --configuration Release src/Elmah.Io.Functions/Elmah.Io.Functions.csproj /p:Version=4.1.${{ github.run_number }}-pre
+      run: dotnet pack --configuration Release src/Elmah.Io.Functions/Elmah.Io.Functions.csproj /p:Version=4.1.${{ github.run_number }}
     - name: Push to nuget.org
-      run: dotnet nuget push src/Elmah.Io.Functions/bin/Release/Elmah.Io.Functions.4.1.${{ github.run_number }}-pre.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push src/Elmah.Io.Functions/bin/Release/Elmah.Io.Functions.4.1.${{ github.run_number }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
       if: ${{ github.event_name == 'push' }}
