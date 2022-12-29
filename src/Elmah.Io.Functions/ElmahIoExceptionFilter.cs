@@ -44,7 +44,7 @@ namespace Elmah.Io.Functions
                 }
             }
 
-            await MessageShipper.Ship(exceptionContext, httpContext, options);
+            await MessageShipper.Ship(exceptionContext, httpContext, options, cancellationToken);
         }
 
         /// <summary>

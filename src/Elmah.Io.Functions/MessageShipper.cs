@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Elmah.Io.Functions
@@ -18,7 +19,7 @@ namespace Elmah.Io.Functions
 
         internal static IElmahioAPI elmahIoClient;
 
-        public static async Task Ship(FunctionExceptionContext exceptionContext, HttpContext context, ElmahIoFunctionOptions options)
+        public static async Task Ship(FunctionExceptionContext exceptionContext, HttpContext context, ElmahIoFunctionOptions options, CancellationToken cancellationToken = default)
 #pragma warning restore CS0618 // Type or member is obsolete
         {
             var exception = exceptionContext.Exception;
@@ -68,7 +69,7 @@ namespace Elmah.Io.Functions
 
             try
             {
-                await elmahIoClient.Messages.CreateAndNotifyAsync(options.LogId, createMessage);
+                await elmahIoClient.Messages.CreateAndNotifyAsync(options.LogId, createMessage, cancellationToken);
             }
             catch (Exception e)
             {
