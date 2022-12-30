@@ -111,6 +111,9 @@ namespace Elmah.Io.Functions
             machineName = Environment.GetEnvironmentVariable("COMPUTERNAME");
             if (!string.IsNullOrWhiteSpace(machineName)) return machineName;
 
+            machineName = Environment.GetEnvironmentVariable("WEBSITE_SITE_NAME");
+            if (!string.IsNullOrWhiteSpace(machineName)) return machineName;
+
             return context?.Request?.Host.Host;
         }
 
