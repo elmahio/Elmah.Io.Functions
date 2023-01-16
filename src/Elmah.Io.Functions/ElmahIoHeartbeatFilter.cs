@@ -64,11 +64,11 @@ namespace Elmah.Io.Functions
 
             if (executedContext.FunctionResult.Succeeded)
             {
-                await api.Heartbeats.HealthyAsync(options.LogId, options.HeartbeatId, took: took);
+                await api.Heartbeats.HealthyAsync(options.LogId, options.HeartbeatId, took: took, cancellationToken: cancellationToken);
             }
             else
             {
-                await api.Heartbeats.UnhealthyAsync(options.LogId, options.HeartbeatId, executedContext.FunctionResult.Exception?.ToString(), took: took);
+                await api.Heartbeats.UnhealthyAsync(options.LogId, options.HeartbeatId, executedContext.FunctionResult.Exception?.ToString(), took: took, cancellationToken: cancellationToken);
 
             }
         }
