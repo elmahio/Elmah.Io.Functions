@@ -51,7 +51,8 @@ namespace Elmah.Io.Functions.Test
                         && msg.Type == "System.FormatException"
                         && msg.Hostname != null
                         && msg.Severity == "Error"
-                        && msg.Source == innerException.Source));
+                        && msg.Source == innerException.Source),
+                    Arg.Any<CancellationToken>());
         }
     }
 }
