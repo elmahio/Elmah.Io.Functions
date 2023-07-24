@@ -11,11 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{D288
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions", "src\Elmah.Io.Functions\Elmah.Io.Functions.csproj", "{5F252A87-6964-4663-BFB5-8F9224D63132}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F199C0C1-7B2D-4348-A48A-71FA0D43883E}"
-	ProjectSection(SolutionItems) = preProject
-		.github\workflows\build.yml = .github\workflows\build.yml
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.HttpTrigger", "samples\Elmah.Io.Functions.HttpTrigger\Elmah.Io.Functions.HttpTrigger.csproj", "{6356DF10-D920-4361-AE5F-7D5F6836F4AA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTrigger", "samples\Elmah.Io.Functions.TimerTrigger\Elmah.Io.Functions.TimerTrigger.csproj", "{E9BAEDA7-CEC9-4D10-AB2F-C215450F8237}"
@@ -24,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTrigger60", "samples\Elmah.Io.Functions.TimerTrigger60\Elmah.Io.Functions.TimerTrigger60.csproj", "{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Functions.Test", "test\Elmah.Io.Functions.Test\Elmah.Io.Functions.Test.csproj", "{461ABF30-9A36-4021-AA7B-43710E59923E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.Test", "test\Elmah.Io.Functions.Test\Elmah.Io.Functions.Test.csproj", "{461ABF30-9A36-4021-AA7B-43710E59923E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
