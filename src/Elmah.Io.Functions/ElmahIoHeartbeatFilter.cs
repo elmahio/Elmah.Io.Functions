@@ -19,9 +19,9 @@ namespace Elmah.Io.Functions
     {
         private readonly ElmahIoFunctionOptions options;
         private ElmahioAPI api;
-        internal static string _assemblyVersion = typeof(ElmahIoHeartbeatFilter).Assembly.GetName().Version.ToString();
+        private static string _assemblyVersion = typeof(ElmahIoHeartbeatFilter).Assembly.GetName().Version.ToString();
 #pragma warning disable CS0618 // Type or member is obsolete
-        internal static string _functionsAssemblyVersion = typeof(IFunctionInvocationFilter).Assembly.GetName().Version.ToString();
+        private static string _functionsAssemblyVersion = typeof(IFunctionInvocationFilter).Assembly.GetName().Version.ToString();
 #pragma warning restore CS0618 // Type or member is obsolete
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Elmah.Io.Functions
         {
             this.options = options.Value;
             if (string.IsNullOrWhiteSpace(this.options.ApiKey)) throw new ArgumentNullException(nameof(this.options.ApiKey));
-            if (this.options.LogId == null || this.options.LogId == Guid.Empty) throw new ArgumentNullException(nameof(this.options.LogId));
+            if (this.options.LogId == Guid.Empty) throw new ArgumentNullException(nameof(this.options.LogId));
             if (string.IsNullOrWhiteSpace(this.options.HeartbeatId)) throw new ArgumentNullException(nameof(this.options.HeartbeatId));
         }
 

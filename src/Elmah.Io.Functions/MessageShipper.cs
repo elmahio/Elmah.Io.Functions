@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Elmah.Io.Functions
 {
-    internal class MessageShipper
+    internal static class MessageShipper
     {
-        internal static string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
+        private static string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
 #pragma warning disable CS0618 // Type or member is obsolete
-        internal static string _functionsAssemblyVersion = typeof(FunctionExceptionContext).Assembly.GetName().Version.ToString();
+        private static string _functionsAssemblyVersion = typeof(FunctionExceptionContext).Assembly.GetName().Version.ToString();
 
         internal static IElmahioAPI elmahIoClient;
 
@@ -29,7 +29,7 @@ namespace Elmah.Io.Functions
                 DateTime = DateTime.UtcNow,
                 Detail = Detail(exception),
                 Type = baseException?.GetType().FullName,
-                Title = baseException.Message,
+                Title = baseException?.Message ?? "An error happened",
                 Data = Data(exceptionContext),
                 Cookies = Cookies(context),
                 Form = Form(context),
@@ -139,14 +139,15 @@ namespace Elmah.Io.Functions
                     .Request?
                     .Form?
                     .Keys
-                    .Select(k => new Item(k, httpContext.Request.Form[k])).ToList();
+                    .Select(k => new Item(k, httpContext.Request.Form[k]))
+                    .ToList() ?? new List<Item>();
             }
             catch (InvalidOperationException)
             {
                 // Request not a form POST or similar
             }
 
-            return null;
+            return new List<Item>();
         }
 
         private static List<Item> ServerVariables(HttpContext httpContext)
@@ -155,7 +156,8 @@ namespace Elmah.Io.Functions
                 .Request?
                 .Headers?
                 .Keys
-                .Select(k => new Item(k, httpContext.Request.Headers[k])).ToList();
+                .Select(k => new Item(k, httpContext.Request.Headers[k]))
+                .ToList() ?? new List<Item>();
         }
 
         private static List<Item> QueryString(HttpContext httpContext)
@@ -164,7 +166,8 @@ namespace Elmah.Io.Functions
                 .Request?
                 .Query?
                 .Keys
-                .Select(k => new Item(k, httpContext?.Request.Query[k])).ToList();
+                .Select(k => new Item(k, httpContext?.Request.Query[k]))
+                .ToList() ?? new List<Item>();
         }
 
         private static int? StatusCode(Exception exception, HttpContext context)
