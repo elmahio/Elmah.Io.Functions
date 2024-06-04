@@ -13,11 +13,13 @@ namespace Elmah.Io.Functions
 {
     internal static class MessageShipper
     {
-        private static string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
+        private static readonly string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
 #pragma warning disable CS0618 // Type or member is obsolete
-        private static string _functionsAssemblyVersion = typeof(FunctionExceptionContext).Assembly.GetName().Version.ToString();
+        private static readonly string _functionsAssemblyVersion = typeof(FunctionExceptionContext).Assembly.GetName().Version.ToString();
 
+#pragma warning disable S2223 // Non-constant static fields should not be visible
         internal static IElmahioAPI elmahIoClient;
+#pragma warning restore S2223 // Non-constant static fields should not be visible
 
         public static async Task Ship(FunctionExceptionContext exceptionContext, HttpContext context, ElmahIoFunctionOptions options, CancellationToken cancellationToken = default)
 #pragma warning restore CS0618 // Type or member is obsolete

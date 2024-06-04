@@ -19,14 +19,15 @@ namespace Elmah.Io.Functions
     {
         private readonly ElmahIoFunctionOptions options;
         private ElmahioAPI api;
-        private static string _assemblyVersion = typeof(ElmahIoHeartbeatFilter).Assembly.GetName().Version.ToString();
+        private static readonly string _assemblyVersion = typeof(ElmahIoHeartbeatFilter).Assembly.GetName().Version.ToString();
 #pragma warning disable CS0618 // Type or member is obsolete
-        private static string _functionsAssemblyVersion = typeof(IFunctionInvocationFilter).Assembly.GetName().Version.ToString();
+        private static readonly string _functionsAssemblyVersion = typeof(IFunctionInvocationFilter).Assembly.GetName().Version.ToString();
 #pragma warning restore CS0618 // Type or member is obsolete
 
         /// <summary>
         /// Create a new instance of the ElmahIoHeartbeatFilter class. The constructor is intended for DI to use when setting up the filter.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S3928:Parameter names used into ArgumentException constructors should match an existing one ", Justification = "The arguments are on options")]
         public ElmahIoHeartbeatFilter(IOptions<ElmahIoFunctionOptions> options)
         {
             this.options = options.Value;
@@ -43,14 +44,10 @@ namespace Elmah.Io.Functions
 #pragma warning restore CS0618 // Type or member is obsolete
         {
             long? took = null;
-            if (executedContext.Properties.ContainsKey(Constants.StopwatchKeyName))
+            if (executedContext.Properties.ContainsKey(Constants.StopwatchKeyName) && executedContext.Properties[Constants.StopwatchKeyName] is Stopwatch stopwatch)
             {
-                var stopwatch = executedContext.Properties[Constants.StopwatchKeyName] as Stopwatch;
-                if (stopwatch != null)
-                {
-                    stopwatch.Stop();
-                    took = stopwatch.ElapsedMilliseconds;
-                }
+                stopwatch.Stop();
+                took = stopwatch.ElapsedMilliseconds;
             }
 
             if (api == null)
