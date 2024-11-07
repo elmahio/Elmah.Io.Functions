@@ -146,14 +146,14 @@ namespace Elmah.Io.Functions
                     .Form?
                     .Keys
                     .Select(k => new Item(k, httpContext.Request.Form[k]))
-                    .ToList() ?? new List<Item>();
+                    .ToList() ?? [];
             }
             catch (InvalidOperationException)
             {
                 // Request not a form POST or similar
             }
 
-            return new List<Item>();
+            return [];
         }
 
         private static List<Item> ServerVariables(HttpContext httpContext)
@@ -163,7 +163,7 @@ namespace Elmah.Io.Functions
                 .Headers?
                 .Keys
                 .Select(k => new Item(k, httpContext.Request.Headers[k]))
-                .ToList() ?? new List<Item>();
+                .ToList() ?? [];
         }
 
         private static List<Item> QueryString(HttpContext httpContext)
@@ -173,7 +173,7 @@ namespace Elmah.Io.Functions
                 .Query?
                 .Keys
                 .Select(k => new Item(k, httpContext?.Request.Query[k]))
-                .ToList() ?? new List<Item>();
+                .ToList() ?? [];
         }
 
         private static int? StatusCode(Exception exception, HttpContext context)

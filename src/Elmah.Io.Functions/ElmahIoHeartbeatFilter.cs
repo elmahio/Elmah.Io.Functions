@@ -83,7 +83,7 @@ namespace Elmah.Io.Functions
             return Task.CompletedTask;
         }
 
-        private string UserAgent()
+        private static string UserAgent()
         {
             return new StringBuilder()
                 .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)).ToString())
