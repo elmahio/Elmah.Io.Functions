@@ -14,6 +14,7 @@ namespace Elmah.Io.Functions
     internal static class MessageShipper
     {
         private static readonly string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
+        private static readonly string _elmahIoClientAssemblyVersion = typeof(IElmahioAPI).Assembly.GetName().Version.ToString();
 #pragma warning disable CS0618 // Type or member is obsolete
         private static readonly string _functionsAssemblyVersion = typeof(FunctionExceptionContext).Assembly.GetName().Version.ToString();
 
@@ -46,6 +47,67 @@ namespace Elmah.Io.Functions
                 Application = options.Application,
             };
 
+            EnsureClient(options);
+
+            try
+            {
+                await elmahIoClient.Messages.CreateAndNotifyAsync(options.LogId, createMessage, cancellationToken);
+            }
+            catch (Exception e)
+            {
+                options.OnError?.Invoke(createMessage, e);
+                // If there's a Exception while generating the error page, re-throw the original exception.
+            }
+        }
+
+        public static void CreateInstallation(ElmahIoFunctionOptions options)
+        {
+            try
+            {
+                var logger = new LoggerInfo
+                {
+                    Type = "Elmah.Io.Functions",
+                    Assemblies =
+                    [
+                        new AssemblyInfo
+                        {
+                            Name = "Elmah.Io.Functions",
+                            Version = _assemblyVersion,
+                        },
+                        new AssemblyInfo
+                        {
+                            Name = "Elmah.Io.Client",
+                            Version = _elmahIoClientAssemblyVersion,
+                        },
+                        new AssemblyInfo
+                        {
+                            Name = "Microsoft.Azure.WebJobs.Host",
+                            Version = _functionsAssemblyVersion,
+                        }
+                    ],
+                    ConfigFiles = [],
+                    Properties = [],
+                };
+
+                var installation = new CreateInstallation
+                {
+                    Name = options.Application,
+                    Type = "azurefunction",
+                    Loggers = [logger]
+                };
+
+                EnsureClient(options);
+
+                elmahIoClient.Installations.Create(options.LogId.ToString(), installation);
+            }
+            catch
+            {
+                // We don't want to crash the entire application if the installation fails. Carry on.
+            }
+        }
+
+        private static void EnsureClient(ElmahIoFunctionOptions options)
+        {
             if (elmahIoClient == null)
             {
                 elmahIoClient = ElmahioAPI.Create(options.ApiKey, new ElmahIoOptions
@@ -71,16 +133,6 @@ namespace Elmah.Io.Functions
                 {
                     options.OnError?.Invoke(args.Message, args.Error);
                 };
-            }
-
-            try
-            {
-                await elmahIoClient.Messages.CreateAndNotifyAsync(options.LogId, createMessage, cancellationToken);
-            }
-            catch (Exception e)
-            {
-                options.OnError?.Invoke(createMessage, e);
-                // If there's a Exception while generating the error page, re-throw the original exception.
             }
         }
 

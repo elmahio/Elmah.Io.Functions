@@ -22,6 +22,7 @@ namespace Elmah.Io.Functions
         public ElmahIoExceptionFilter(IOptions<ElmahIoFunctionOptions> options)
         {
             this.options = options.Value;
+            MessageShipper.CreateInstallation(this.options);
         }
 
         /// <summary>
