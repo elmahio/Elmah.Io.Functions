@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{D288
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions", "src\Elmah.Io.Functions\Elmah.Io.Functions.csproj", "{5F252A87-6964-4663-BFB5-8F9224D63132}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.HttpTrigger", "samples\Elmah.Io.Functions.HttpTrigger\Elmah.Io.Functions.HttpTrigger.csproj", "{6356DF10-D920-4361-AE5F-7D5F6836F4AA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTrigger", "samples\Elmah.Io.Functions.TimerTrigger\Elmah.Io.Functions.TimerTrigger.csproj", "{E9BAEDA7-CEC9-4D10-AB2F-C215450F8237}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTriggerWithHeartbeat", "samples\Elmah.Io.Functions.TimerTriggerWithHeartbeat\Elmah.Io.Functions.TimerTriggerWithHeartbeat.csproj", "{CF62ABD1-9E7F-453F-B788-0E845D618710}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTrigger60", "samples\Elmah.Io.Functions.TimerTrigger60\Elmah.Io.Functions.TimerTrigger60.csproj", "{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.Test", "test\Elmah.Io.Functions.Test\Elmah.Io.Functions.Test.csproj", "{461ABF30-9A36-4021-AA7B-43710E59923E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Functions.TimerTrigger80", "samples\Elmah.Io.Functions.TimerTrigger80\Elmah.Io.Functions.TimerTrigger80.csproj", "{A37DD18D-543D-4420-9B89-73E5465B54B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Functions.HttpTrigger80", "samples\Elmah.Io.Functions.HttpTrigger80\Elmah.Io.Functions.HttpTrigger80.csproj", "{251A310C-F500-4130-94B2-ED304E9BDAFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elmah.Io.Functions.TimerTriggerWithHeartbeat80", "samples\Elmah.Io.Functions.TimerTriggerWithHeartbeat80\Elmah.Io.Functions.TimerTriggerWithHeartbeat80.csproj", "{9B0CAFF1-DBA2-442C-8D5D-CEF8390F2CB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,18 +31,6 @@ Global
 		{5F252A87-6964-4663-BFB5-8F9224D63132}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F252A87-6964-4663-BFB5-8F9224D63132}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F252A87-6964-4663-BFB5-8F9224D63132}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6356DF10-D920-4361-AE5F-7D5F6836F4AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6356DF10-D920-4361-AE5F-7D5F6836F4AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6356DF10-D920-4361-AE5F-7D5F6836F4AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6356DF10-D920-4361-AE5F-7D5F6836F4AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9BAEDA7-CEC9-4D10-AB2F-C215450F8237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9BAEDA7-CEC9-4D10-AB2F-C215450F8237}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9BAEDA7-CEC9-4D10-AB2F-C215450F8237}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9BAEDA7-CEC9-4D10-AB2F-C215450F8237}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF62ABD1-9E7F-453F-B788-0E845D618710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF62ABD1-9E7F-453F-B788-0E845D618710}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF62ABD1-9E7F-453F-B788-0E845D618710}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF62ABD1-9E7F-453F-B788-0E845D618710}.Release|Any CPU.Build.0 = Release|Any CPU
 		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,17 +39,29 @@ Global
 		{461ABF30-9A36-4021-AA7B-43710E59923E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{461ABF30-9A36-4021-AA7B-43710E59923E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{461ABF30-9A36-4021-AA7B-43710E59923E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A37DD18D-543D-4420-9B89-73E5465B54B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A37DD18D-543D-4420-9B89-73E5465B54B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A37DD18D-543D-4420-9B89-73E5465B54B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A37DD18D-543D-4420-9B89-73E5465B54B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{251A310C-F500-4130-94B2-ED304E9BDAFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{251A310C-F500-4130-94B2-ED304E9BDAFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{251A310C-F500-4130-94B2-ED304E9BDAFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{251A310C-F500-4130-94B2-ED304E9BDAFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B0CAFF1-DBA2-442C-8D5D-CEF8390F2CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B0CAFF1-DBA2-442C-8D5D-CEF8390F2CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B0CAFF1-DBA2-442C-8D5D-CEF8390F2CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B0CAFF1-DBA2-442C-8D5D-CEF8390F2CB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5F252A87-6964-4663-BFB5-8F9224D63132} = {80AD4FBB-FF69-4BAD-B1DF-050C1C434D1C}
-		{6356DF10-D920-4361-AE5F-7D5F6836F4AA} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
-		{E9BAEDA7-CEC9-4D10-AB2F-C215450F8237} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
-		{CF62ABD1-9E7F-453F-B788-0E845D618710} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 		{461ABF30-9A36-4021-AA7B-43710E59923E} = {445B28CB-4E1B-44CE-8AE7-F44DEB8A364E}
+		{A37DD18D-543D-4420-9B89-73E5465B54B0} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
+		{251A310C-F500-4130-94B2-ED304E9BDAFC} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
+		{9B0CAFF1-DBA2-442C-8D5D-CEF8390F2CB4} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {549BEB48-E57E-4A17-A64A-153F0F02263C}

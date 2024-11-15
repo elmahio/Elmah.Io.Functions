@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-[assembly: FunctionsStartup(typeof(Elmah.Io.Functions.HttpTrigger.Startup))]
+[assembly: FunctionsStartup(typeof(Elmah.Io.Functions.TimerTrigger80.Startup))]
 
-namespace Elmah.Io.Functions.HttpTrigger
+namespace Elmah.Io.Functions.TimerTrigger80
 {
     public class Startup : FunctionsStartup
     {
@@ -21,9 +21,14 @@ namespace Elmah.Io.Functions.HttpTrigger
             {
                 o.ApiKey = config["apiKey"];
                 o.LogId = new Guid(config["logId"]);
+
+                // Optional set application name on all errors
+                o.Application = "Azure Functions v4 application";
+
+                // Optional enrich all errors with one or more properties
                 o.OnMessage = m =>
                 {
-                    m.Version = "1.0.0";
+                    m.Version = "8.0.0";
                 };
             });
 

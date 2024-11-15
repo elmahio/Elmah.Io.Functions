@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-[assembly: FunctionsStartup(typeof(Elmah.Io.Functions.TimerTrigger.Startup))]
+[assembly: FunctionsStartup(typeof(Elmah.Io.Functions.HttpTrigger80.Startup))]
 
-namespace Elmah.Io.Functions.TimerTrigger
+namespace Elmah.Io.Functions.HttpTrigger80
 {
     public class Startup : FunctionsStartup
     {
@@ -23,7 +23,7 @@ namespace Elmah.Io.Functions.TimerTrigger
                 o.LogId = new Guid(config["logId"]);
                 o.OnMessage = m =>
                 {
-                    m.Version = "1.0.0";
+                    m.Version = "8.0.0";
                 };
             });
 
