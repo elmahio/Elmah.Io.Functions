@@ -50,14 +50,11 @@ namespace Elmah.Io.Functions
                 took = stopwatch.ElapsedMilliseconds;
             }
 
-            if (api == null)
+            api ??= (ElmahioAPI)ElmahioAPI.Create(options.ApiKey, new ElmahIoOptions
             {
-                api = (ElmahioAPI)ElmahioAPI.Create(options.ApiKey, new ElmahIoOptions
-                {
-                    Timeout = options.Timeout,
-                    UserAgent = UserAgent(),
-                });
-            }
+                Timeout = options.Timeout,
+                UserAgent = UserAgent(),
+            });
 
             if (executedContext.FunctionResult.Succeeded)
             {
