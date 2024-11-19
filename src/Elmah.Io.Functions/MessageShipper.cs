@@ -81,7 +81,7 @@ namespace Elmah.Io.Functions
                         },
                         new AssemblyInfo
                         {
-                            Name = "Microsoft.Azure.WebJobs.Host",
+                            Name = "Microsoft.Azure.WebJobs",
                             Version = _functionsAssemblyVersion,
                         }
                     ],
