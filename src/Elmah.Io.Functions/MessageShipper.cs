@@ -87,7 +87,13 @@ namespace Elmah.Io.Functions
                     ],
                     ConfigFiles = [],
                     Properties = [],
+                    EnvironmentVariables = [],
                 };
+
+                EnvironmentVariablesHelper.GetElmahIoAppSettingsEnvironmentVariables().ForEach(v => logger.EnvironmentVariables.Add(v));
+                EnvironmentVariablesHelper.GetAzureFunctionsEnvironmentVariables().ForEach(v => logger.EnvironmentVariables.Add(v));
+                EnvironmentVariablesHelper.GetDotNetEnvironmentVariables().ForEach(v => logger.EnvironmentVariables.Add(v));
+                EnvironmentVariablesHelper.GetAzureEnvironmentVariables().ForEach(v => logger.EnvironmentVariables.Add(v));
 
                 var installation = new CreateInstallation
                 {
@@ -98,7 +104,9 @@ namespace Elmah.Io.Functions
 
                 EnsureClient(options);
 
-                elmahIoClient.Installations.Create(options.LogId.ToString(), installation);
+                options.OnInstallation?.Invoke(installation);
+
+                elmahIoClient.Installations.CreateAndNotify(options.LogId, installation);
             }
             catch
             {
