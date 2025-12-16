@@ -12,42 +12,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v5
       with:
         dotnet-version: |
-          6.0.x
           8.0.x
+
     - name: Install dependencies
       run: dotnet restore
+
     - name: Check vulnerable NuGet packages
       uses: elmahio/github-check-vulnerable-nuget-packages-action@v2
       with:
         projects: src/Elmah.Io.Functions/Elmah.Io.Functions.csproj
+
     - name: Build
       run: dotnet build --configuration Release --no-restore
+
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal
+
     - name: Pack
-      run: dotnet pack --configuration Release src/Elmah.Io.Functions/Elmah.Io.Functions.csproj /p:Version=5.4.${{ github.run_number }}
+      run: dotnet pack --configuration Release src/Elmah.Io.Functions/Elmah.Io.Functions.csproj /p:Version=6.0.${{ github.run_number }}-pre
+
     - name: Install dotnet-validate
       run: dotnet tool install --global dotnet-validate --version 0.0.1-preview.537
+
     - name: Validate
-      run: dotnet-validate package local src/Elmah.Io.Functions/bin/Release/Elmah.Io.Functions.5.4.${{ github.run_number }}.nupkg
+      run: dotnet-validate package local src/Elmah.Io.Functions/bin/Release/Elmah.Io.Functions.6.0.${{ github.run_number }}-pre.nupkg
+
     - name: Push to nuget.org
-      run: dotnet nuget push src/Elmah.Io.Functions/bin/Release/Elmah.Io.Functions.5.4.${{ github.run_number }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push src/Elmah.Io.Functions/bin/Release/Elmah.Io.Functions.6.0.${{ github.run_number }}-pre.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
       if: ${{ github.event_name == 'push' }}
 
     - name: Refresh Bugster
-      shell: pwsh
-      env:
-        FUNCTION_APP_URL: ${{ secrets.FUNCTION_APP_URL }}
-      run: |
-        $repoName = ($env:GITHUB_REPOSITORY -split '/')[1]
-        $json = @{ repository = $repoName } | ConvertTo-Json -Compress
-        curl --fail-with-body -X POST `
-             -H "Content-Type: application/json" `
-             -d "$json" `
-             $env:FUNCTION_APP_URL
-      if: ${{ github.event_name == 'push' }}
+      uses: elmahio/actions/refresh-bugster-repository@v1.2
+      with:
+        signing: ${{ secrets.BUGSTER_SIGNING_KEY }}
+        url: ${{ secrets.FUNCTION_APP_URL }}
+        repository: ${{ github.event.repository.name }}
+      if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}

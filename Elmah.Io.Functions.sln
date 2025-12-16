@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{80AD4FBB-FF69-4BAD-B1DF-050C1C434D1C}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions", "src\Elmah.Io.Functions\Elmah.Io.Functions.csproj", "{5F252A87-6964-4663-BFB5-8F9224D63132}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.TimerTrigger60", "samples\Elmah.Io.Functions.TimerTrigger60\Elmah.Io.Functions.TimerTrigger60.csproj", "{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elmah.Io.Functions.Test", "test\Elmah.Io.Functions.Test\Elmah.Io.Functions.Test.csproj", "{461ABF30-9A36-4021-AA7B-43710E59923E}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{5F252A87-6964-4663-BFB5-8F9224D63132}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F252A87-6964-4663-BFB5-8F9224D63132}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F252A87-6964-4663-BFB5-8F9224D63132}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{461ABF30-9A36-4021-AA7B-43710E59923E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{461ABF30-9A36-4021-AA7B-43710E59923E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{461ABF30-9A36-4021-AA7B-43710E59923E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,7 +51,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5F252A87-6964-4663-BFB5-8F9224D63132} = {80AD4FBB-FF69-4BAD-B1DF-050C1C434D1C}
-		{35A8B33E-0533-42E9-B31F-E48F96FA0B2C} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 		{461ABF30-9A36-4021-AA7B-43710E59923E} = {445B28CB-4E1B-44CE-8AE7-F44DEB8A364E}
 		{A37DD18D-543D-4420-9B89-73E5465B54B0} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}
 		{251A310C-F500-4130-94B2-ED304E9BDAFC} = {D28833E4-EFAE-4616-AF4B-E0EE57BC63DF}

@@ -25,6 +25,10 @@ namespace Elmah.Io.Functions.HttpTrigger80
                 {
                     m.Version = "8.0.0";
                 };
+                o.OnError = (msg, e) =>
+                {
+                    Console.WriteLine($"Elmah.Io Functions Error: {e.Message}");
+                };
             });
 
 #pragma warning disable CS0618 // Type or member is obsolete

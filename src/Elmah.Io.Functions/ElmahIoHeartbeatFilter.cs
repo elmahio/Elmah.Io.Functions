@@ -19,9 +19,9 @@ namespace Elmah.Io.Functions
     {
         private readonly ElmahIoFunctionOptions options;
         private ElmahioAPI api;
-        private static readonly string _assemblyVersion = typeof(ElmahIoHeartbeatFilter).Assembly.GetName().Version.ToString();
+        private static readonly string assemblyVersion = typeof(ElmahIoHeartbeatFilter).Assembly.GetName().Version.ToString();
 #pragma warning disable CS0618 // Type or member is obsolete
-        private static readonly string _functionsAssemblyVersion = typeof(IFunctionInvocationFilter).Assembly.GetName().Version.ToString();
+        private static readonly string functionsAssemblyVersion = typeof(IFunctionInvocationFilter).Assembly.GetName().Version.ToString();
 #pragma warning restore CS0618 // Type or member is obsolete
 
         /// <summary>
@@ -83,9 +83,9 @@ namespace Elmah.Io.Functions
         private static string UserAgent()
         {
             return new StringBuilder()
-                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)).ToString())
+                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", assemblyVersion)).ToString())
                 .Append(" ")
-                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Microsoft.Azure.WebJobs", _functionsAssemblyVersion)).ToString())
+                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Microsoft.Azure.WebJobs", functionsAssemblyVersion)).ToString())
                 .ToString();
         }
     }

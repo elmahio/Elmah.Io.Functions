@@ -13,10 +13,10 @@ namespace Elmah.Io.Functions
 {
     internal static class MessageShipper
     {
-        private static readonly string _assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
-        private static readonly string _elmahIoClientAssemblyVersion = typeof(IElmahioAPI).Assembly.GetName().Version.ToString();
+        private static readonly string assemblyVersion = typeof(MessageShipper).Assembly.GetName().Version.ToString();
+        private static readonly string elmahIoClientAssemblyVersion = typeof(IElmahioAPI).Assembly.GetName().Version.ToString();
 #pragma warning disable CS0618 // Type or member is obsolete
-        private static readonly string _functionsAssemblyVersion = typeof(FunctionExceptionContext).Assembly.GetName().Version.ToString();
+        private static readonly string functionsAssemblyVersion = typeof(FunctionExceptionContext).Assembly.GetName().Version.ToString();
 
 #pragma warning disable S2223 // Non-constant static fields should not be visible
         internal static IElmahioAPI elmahIoClient;
@@ -72,17 +72,17 @@ namespace Elmah.Io.Functions
                         new AssemblyInfo
                         {
                             Name = "Elmah.Io.Functions",
-                            Version = _assemblyVersion,
+                            Version = assemblyVersion,
                         },
                         new AssemblyInfo
                         {
                             Name = "Elmah.Io.Client",
-                            Version = _elmahIoClientAssemblyVersion,
+                            Version = elmahIoClientAssemblyVersion,
                         },
                         new AssemblyInfo
                         {
                             Name = "Microsoft.Azure.WebJobs",
-                            Version = _functionsAssemblyVersion,
+                            Version = functionsAssemblyVersion,
                         }
                     ],
                     ConfigFiles = [],
@@ -268,9 +268,9 @@ namespace Elmah.Io.Functions
         private static string UserAgent()
         {
             return new StringBuilder()
-                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", _assemblyVersion)).ToString())
+                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Elmah.Io.Functions", assemblyVersion)).ToString())
                 .Append(" ")
-                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Microsoft.Azure.WebJobs", _functionsAssemblyVersion)).ToString())
+                .Append(new ProductInfoHeaderValue(new ProductHeaderValue("Microsoft.Azure.WebJobs", functionsAssemblyVersion)).ToString())
                 .ToString();
         }
     }
